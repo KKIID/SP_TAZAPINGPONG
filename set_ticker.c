@@ -3,9 +3,25 @@
 #include <sys/time.h>
 #include <signal.h>
 #include <stdlib.h>
+#include "set_ticker.h"
+
+static int counter = 30;
+
+void setCounter(int count) {
+	counter = count;
+}
+
+int getCounter() {
+	return counter;
+}
+
+char *getCounter2() {
+	char *buf = (char*)malloc(3*sizeof(char));
+	sprintf(buf,"%2d", counter);
+	return buf;	
+}
 
 int set_ticker(int n_msecs) {
-	static int counter = 30;
 	struct itimerval new_timeset;
 	long n_sec, n_usecs;
 	n_sec = n_msecs / 1000;
