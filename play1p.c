@@ -21,7 +21,7 @@ void play1P() {
 	set_ticker(1000);
 	signal(SIGALRM,handler);
 
-	while(true) {
+	while(getCounter()>0) {
 		ch=getch();
 		if(ch=='\n') {
 			drawPlay();
@@ -29,6 +29,13 @@ void play1P() {
 			buffer[i] = '\0';
 			i=0;
 			inputCursur();
+		} else if (ch==0177 || ch == 0010) {
+			if(i>0) {
+				addch('\b');
+				addch(' ');
+				addch('\b');
+				i--;	
+			}
 		} else {
 			addch(ch);
 			buffer[i] = ch;
