@@ -1,4 +1,5 @@
 #include "draw.h"
+#include "set_ticker.h"
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -15,6 +16,7 @@ int main(void){
 		Menu();
 		switch(getchar()) {
 			case '1':
+				play1P();
 				break;
 			case '2':
 				break;
