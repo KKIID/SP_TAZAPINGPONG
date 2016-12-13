@@ -4,10 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "ADT_QUEUE.h"
-
-char *readline(int fd);
-void shufword(char *filename);
-QUEUE *loadQueue(char *filename, int n);
+#include "loadword.h"
 
 QUEUE *loadQueue(char *filename, int n) {
 	QUEUE *queue = createQueue();
@@ -18,6 +15,7 @@ QUEUE *loadQueue(char *filename, int n) {
 	fd = open("temp",O_RDONLY);
 	for(i=0;i<n;i++) 	
 		enqueue(queue,readline(fd));
+	return queue;
 }
 
 char *readline(int fd) {

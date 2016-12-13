@@ -1,6 +1,13 @@
 #include <curses.h>
 #include "draw.h"
 
+void putword(int i, char *word, int x, int y) {
+	move(3*x,14*y);
+	addstr(word);
+	backCursur(i);
+	refreshScreen();
+}
+
 void drawBoard() {
 	int i;
 	for(i=0;i<COLS;i++)

@@ -1,16 +1,19 @@
 #include "draw.h"
 #include "set_ticker.h"
+#include "loadword.h"
+#include "ADT_QUEUE.h"
 #include <stdio.h>
 #include <signal.h>
 
 int i=0;
 
 void play1P() {
-	char ch;
-	
+	char ch;	
 	char buffer[30];
 	void handler(int);
-	
+	QUEUE *queue;
+	int j;
+
 	i=0;
 	clearScreen();
 	drawBoard();
@@ -20,7 +23,10 @@ void play1P() {
 	setCounter(60);
 	set_ticker(1000);
 	signal(SIGALRM,handler);
-
+	queue = loadQueue("wordlist.txt",15);
+	for(j=0;j<10;j++) {
+		putword(i,(char*)dequeue(queue),j/4+1,j%4+1);	
+	}
 	while(getCounter()>0) {
 		ch=getch();
 		if(ch=='\n') {
@@ -36,7 +42,7 @@ void play1P() {
 				addch('\b');
 				i--;	
 			}
-		} else {
+		} else if(isalnum(ch)) {
 			addch(ch);
 			buffer[i] = ch;
 			i++;
