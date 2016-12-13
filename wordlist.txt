@@ -231,7 +231,7 @@ thrift
 melancholy
 temper
 finance 
-significance 
+significance
 rage
 infancy
 adoration
