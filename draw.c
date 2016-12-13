@@ -2,7 +2,7 @@
 #include "draw.h"
 
 void putword(int i, char *word, int x, int y) {
-	move(3*x,14*y);
+	move(3*(x+1),14*(y+1));
 	addstr(word);
 	backCursur(i);
 	refreshScreen();
@@ -17,7 +17,7 @@ void drawBoard() {
 		addstr("*");
 		move(i,COLS-1);
 		addstr("*");	
-	}
+	}	
 	move(LINES-1,0);
 	for(i=0;i<COLS-1;i++)
 		addstr("*");
@@ -40,10 +40,19 @@ void drawMenu() {
 }
 
 void drawPlay() {
-	move(LINES/6*5-1,COLS/2-18);
-	addstr("*                                    *");
 	move(LINES/6*5,COLS/2-18);
+	addstr("*                                    *");
+	move(LINES/6*5+1,COLS/2-18);
 	addstr(" ************************************ ");
+	move(1,COLS-30);
+	addstr("Score :    0    Time : ");
+}
+
+void drawScore(int score) {
+	char buf[6];
+	sprintf(buf,"%5d",score);
+	move(1,COLS-23);
+	addstr(buf);
 }
 
 void initScreen() {
@@ -63,14 +72,13 @@ void initCursur() {
 }
 
 void inputCursur() {
-	move(LINES/6*5-1,COLS/2-17);
+	move(LINES/6*5,COLS/2-17);
 }
 
 void backCursur(int i) {
-	move(LINES/6*5-1,COLS/2-17 + i);
+	move(LINES/6*5,COLS/2-17 + i);
 }
 
 void timerCursur() {
-	move(2,COLS-5);
+	move(1,COLS-6);
 }
-

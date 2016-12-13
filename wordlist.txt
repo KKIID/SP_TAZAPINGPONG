@@ -111,7 +111,8 @@ forbid
 display
 concentrate
 yearn
-perishforsake
+perish
+forsake
 endeavor 
 soothe 
 congratulate 
