@@ -7,6 +7,7 @@
 #include <string.h>
 
 #define BLANK "              "
+#define DEBUG
 
 void checkWord(char *buf);
 QUEUE *initBoard();
@@ -39,7 +40,11 @@ void play1P() {
 	refreshScreen();
 	inputCursur();
 	setCounter(60);
+#ifdef DEBUG
+	set_ticker(50);
+#else
 	set_ticker(1000);
+#endif
 	signal(SIGALRM,handler);
 	queue = initBoard();
 
@@ -81,6 +86,13 @@ void handler(int s) {
 			drawScore(score);
 		}
 		backCursur(i);
+		refreshScreen();
+	} else if (getCounter()==-1) {
+		setCounter(getCounter()-1);	
+		clearScreen();
+		drawBoard();
+		drawResult(score);
+		rmtemp();
 		refreshScreen();
 	}
 }

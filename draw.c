@@ -48,6 +48,16 @@ void drawPlay() {
 	addstr("Score :    0    Time : ");
 }
 
+void drawResult(int score) {
+	char buf[20];
+	sprintf(buf,"Result : %5d",score);
+	move(LINES/3,COLS/2-9);
+	addstr(buf);
+	move(LINES/3*2,COLS/2-10);
+	addstr("< Press Any Key >");
+	initCursur();
+}
+
 void drawScore(int score) {
 	char buf[6];
 	sprintf(buf,"%5d",score);
